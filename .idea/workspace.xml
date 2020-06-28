@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d178d14d-3b69-482d-8d87-f35664f85a0b" name="Default Changelist" comment="" />
+    <list default="true" id="d178d14d-3b69-482d-8d87-f35664f85a0b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Untitled-1.nb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fitgauss.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fit.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,16 +21,19 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/gaussfitter" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1coebgdU70bad0MBc9WMf9ayzHy" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="C:/Artiq/working" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
@@ -34,7 +43,7 @@
       <recent name="C:\Users\TrappedIonPC\cq5\OneDrive - rice.edu\Devices\BFS-PGE-120S4M-CS\myapp" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.fit">
+  <component name="RunManager" selected="Python.fitgauss">
     <configuration name="FlirCamController" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="myapp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -98,7 +107,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="fit" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="fitgauss" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="myapp" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -110,7 +119,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fit.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\TrappedIonPC\cq5\OneDrive - rice.edu\Devices\BFS-PGE-120S4M\myapp\fitgauss.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -142,7 +151,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.fit" />
+        <item itemvalue="Python.fitgauss" />
         <item itemvalue="Python.FlirCamController" />
         <item itemvalue="Python.FlirWindow" />
         <item itemvalue="Python.QtWindow" />
@@ -163,69 +172,81 @@
     </task>
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/gaussfitter" />
+      <path value="$PROJECT_DIR$/src/gaussfitter" />
+      <path value="$PROJECT_DIR$/src/gaussfitter/astropy_helpers" />
+    </ignored-roots>
+  </component>
   <component name="WindowStateProjectService">
     <state x="499" y="163" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1593129315066">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="163" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1593129315066" />
+    <state x="369" y="12" key="CommitChangelistDialog2" timestamp="1593358037416">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="369" y="12" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1593358037416" />
     <state x="804" y="314" key="FileChooserDialogImpl" timestamp="1593027834649">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="603" y="233" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1593016726720" />
     <state x="804" y="314" key="FileChooserDialogImpl/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593027834649" />
     <state x="804" y="315" key="FileChooserDialogImpl/0.0.2048.1112/2048.0.2048.1112@0.0.2048.1112" timestamp="1592607525338" />
-    <state x="607" y="331" width="345" height="162" key="Github.CreateGistDialog" timestamp="1593132256838">
+    <state x="607" y="331" width="345" height="162" key="Github.CreateGistDialog" timestamp="1593132964617">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="607" y="331" width="345" height="162" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1593132256838" />
-    <state width="1515" height="178" key="GridCell.Tab.0.bottom" timestamp="1593132097901">
+    <state x="607" y="331" width="345" height="162" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1593132964617" />
+    <state width="1515" height="177" key="GridCell.Tab.0.bottom" timestamp="1593357964199">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="178" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593132097901" />
+    <state width="1515" height="177" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593357964199" />
     <state width="2027" height="178" key="GridCell.Tab.0.bottom/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593032215178" />
     <state width="1515" height="179" key="GridCell.Tab.0.bottom/0.0.2048.1112/2048.0.2048.1112@0.0.2048.1112" timestamp="1592871004241" />
-    <state width="1515" height="178" key="GridCell.Tab.0.center" timestamp="1593132097901">
+    <state width="1515" height="177" key="GridCell.Tab.0.center" timestamp="1593357964199">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="178" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593132097901" />
+    <state width="1515" height="177" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593357964199" />
     <state width="2027" height="178" key="GridCell.Tab.0.center/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593032215177" />
     <state width="1515" height="179" key="GridCell.Tab.0.center/0.0.2048.1112/2048.0.2048.1112@0.0.2048.1112" timestamp="1592871004241" />
-    <state width="1515" height="178" key="GridCell.Tab.0.left" timestamp="1593132097901">
+    <state width="1515" height="177" key="GridCell.Tab.0.left" timestamp="1593357964199">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="178" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593132097901" />
+    <state width="1515" height="177" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593357964199" />
     <state width="2027" height="178" key="GridCell.Tab.0.left/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593032215177" />
     <state width="1515" height="179" key="GridCell.Tab.0.left/0.0.2048.1112/2048.0.2048.1112@0.0.2048.1112" timestamp="1592871004240" />
-    <state width="1515" height="178" key="GridCell.Tab.0.right" timestamp="1593132097901">
+    <state width="1515" height="177" key="GridCell.Tab.0.right" timestamp="1593357964199">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="178" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593132097901" />
+    <state width="1515" height="177" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593357964199" />
     <state width="2027" height="178" key="GridCell.Tab.0.right/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593032215178" />
     <state width="1515" height="179" key="GridCell.Tab.0.right/0.0.2048.1112/2048.0.2048.1112@0.0.2048.1112" timestamp="1592871004241" />
-    <state width="2027" height="376" key="GridCell.Tab.1.bottom" timestamp="1593129344581">
+    <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1593141461921">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="2027" height="376" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593129344581" />
+    <state width="1515" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593141461921" />
     <state width="2027" height="376" key="GridCell.Tab.1.bottom/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593030996856" />
-    <state width="2027" height="376" key="GridCell.Tab.1.center" timestamp="1593129344581">
+    <state width="1515" height="261" key="GridCell.Tab.1.center" timestamp="1593141461921">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="2027" height="376" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1593129344581" />
+    <state width="1515" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1593141461921" />
     <state width="2027" height="376" key="GridCell.Tab.1.center/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593030996856" />
-    <state width="2027" height="376" key="GridCell.Tab.1.left" timestamp="1593129344581">
+    <state width="1515" height="261" key="GridCell.Tab.1.left" timestamp="1593141461921">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="2027" height="376" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1593129344581" />
+    <state width="1515" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1593141461921" />
     <state width="2027" height="376" key="GridCell.Tab.1.left/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593030996856" />
-    <state width="2027" height="376" key="GridCell.Tab.1.right" timestamp="1593129344581">
+    <state width="1515" height="261" key="GridCell.Tab.1.right" timestamp="1593141461921">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="2027" height="376" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1593129344581" />
+    <state width="1515" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1593141461921" />
     <state width="2027" height="376" key="GridCell.Tab.1.right/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593030996856" />
-    <state x="279" y="58" key="SettingsEditor" timestamp="1593129793920">
+    <state x="279" y="58" key="SettingsEditor" timestamp="1593132956064">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="279" y="58" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1593129793920" />
+    <state x="279" y="58" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1593132956064" />
     <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1593013118998">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
