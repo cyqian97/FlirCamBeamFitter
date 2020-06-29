@@ -163,6 +163,7 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
 
                     # Getting the image data as a numpy array
                     image_data = image_result.GetNDArray()
+                    print(image_data.shape)
 
                     # Draws an image on the current figure
                     plt.imshow(image_data, cmap='gray')
