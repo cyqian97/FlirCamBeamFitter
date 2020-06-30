@@ -6,6 +6,9 @@ from fitgauss import fitgauss2d_section
 import time
 
 
+
+
+
 class Ui_CustomWindow(Ui_MainWindow):
     def custom_init(self):
         self.section_xctr = 0
@@ -15,15 +18,16 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.section_xcoord = []
         self.section_ycoord = []
 
-        # start and stop continue button
+        # init start and stop continue button
         self.update_timer = QtCore.QTimer()
         self.update_timer.timeout.connect(self.update_movie)
         self.pushButtonContinue.clicked.connect(self.start_continue)
 
-        # Exposure Time
+        # init exposure time line edit
         self.lineEditExposureTime.setText(str(self.cam_controller.cam.ExposureTime()))
         self.lineEditExposureTime.returnPressed.connect(self.set_exptime)
 
+        # init section plots
         self.plotx = PlotWidget(self.centralwidget)
         self.plotx.setObjectName("plotx")
         self.gridLayoutImage.addWidget(self.plotx, 1, 0, 1, 1)
@@ -33,6 +37,9 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.ploty.setObjectName("ploty")
         self.gridLayoutImage.addWidget(self.ploty,  0, 1, 1, 1)
         self.sectiony_line = self.ploty.plot(self.section_ydata,self.section_ycoord)
+
+        # image label mouse press event
+        self.labelImage.mousePressEvent = self.label_mousepress()
 
     def start_continue(self):
         self.cam_controller.start_continue()
@@ -62,6 +69,7 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.lineEditxWaist.setText('%.4f' % (p[2]))
         self.lineEdityWaist.setText('%.4f' % (p[3]))
         self.lineEditHeight.setText('%.4f' % (p[4]))
+        self.lineEditExposureTime.setText(str(self.cam_controller.cam.ExposureTime()))
         self.labelImage.setPixmap(QtGui.QPixmap(self.toQImage()))
 
     def update_plot(self):
@@ -92,3 +100,15 @@ class Ui_CustomWindow(Ui_MainWindow):
             print('ValueError: %s' % ex)
             return
         self.cam_controller.configure_exposure(exptime)
+
+    def label_mousepress(self):
+        def mousepress(eventQMouseEvent):
+            label_width = self.labelImage.size().width()
+            label_height = self.labelImage.size().height()
+            mouse_x = eventQMouseEvent.pos().x()
+            mouse_y = eventQMouseEvent.pos().y()
+            self.section_xctr = round(self.cam_controller.framewidth*mouse_x/label_width)
+            self.section_yctr = round(self.cam_controller.frameheight*mouse_y/label_height)
+            print(self.section_xctr)
+            print(self.section_yctr)
+        return mousepress

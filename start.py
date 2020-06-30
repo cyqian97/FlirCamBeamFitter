@@ -7,8 +7,8 @@ from PyQt5 import QtWidgets
 import time
 
 flir = FlirCamController()
-# flir.start_continue()
 
+# flir.start_continue()
 # start_time = time.time()
 # for i in range(100):
 #     flir.acquire_continue()

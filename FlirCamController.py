@@ -1,9 +1,4 @@
-import os
 import PySpin
-import matplotlib.pyplot as plt
-import sys
-import keyboard
-import time
 
 
 class FlirCamController:
@@ -12,6 +7,8 @@ class FlirCamController:
         self.flag_continue = False
 
         self.frame = []
+        self.framewidth = 2000
+        self.frameheight = 1500
         self.framecount = 0
 
         # Retrieve singleton reference to system object
@@ -255,8 +252,40 @@ class FlirCamController:
 
         return result
 
+    def reset_exposure(self):
+        """
+        This function returns the camera to a normal state by re-enabling automatic exposure.
+
+        :param cam: Camera to reset exposure on.
+        :type cam: CameraPtr
+        :return: True if successful, False otherwise.
+        :rtype: bool
+        """
+        try:
+            result = True
+
+            # Turn automatic exposure back on
+            #
+            # *** NOTES ***
+            # Automatic exposure is turned on in order to return the camera to its
+            # default state.
+
+            if self.cam.ExposureAuto.GetAccessMode() != PySpin.RW:
+                print('Unable to enable automatic exposure (node retrieval). Non-fatal error...')
+                return False
+
+            self.cam.ExposureAuto.SetValue(PySpin.ExposureAuto_Continuous)
+
+            print('Automatic exposure enabled...')
+
+        except PySpin.SpinnakerException as ex:
+            print('Error: %s' % ex)
+            result = False
+
+        return result
 
 if __name__ == '__main__':
+    import matplotlib.pyplot as plt
     flir = FlirCamController()
     flir.start_continue()
     flir.acquire_continue()
