@@ -25,20 +25,6 @@
      <layout class="QHBoxLayout" name="horizontalLayoutWhole" stretch="3,1">
       <item>
        <layout class="QGridLayout" name="gridLayoutImage" rowstretch="3,1" columnstretch="3,1">
-        <item row="0" column="1">
-         <widget class="QLabel" name="labelyplot">
-          <property name="text">
-           <string>yplot</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="labelxplot">
-          <property name="text">
-           <string>xplot</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="1">
          <layout class="QGridLayout" name="gridLayoutFitResult" columnstretch="1,1">
           <item row="2" column="0">
@@ -56,7 +42,7 @@
            </widget>
           </item>
           <item row="5" column="0">
-           <widget class="QLabel" name="label_6">
+           <widget class="QLabel" name="labelUnit">
             <property name="text">
              <string>unit</string>
             </property>

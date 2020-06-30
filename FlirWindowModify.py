@@ -1,10 +1,20 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from pyqtgraph import PlotWidget, plot
 from FlirWindow import Ui_MainWindow
 import numpy as np
 from fitgauss import fitgauss2d_section
+import time
+
 
 class Ui_CustomWindow(Ui_MainWindow):
     def custom_init(self):
+        self.section_xctr = 0
+        self.section_yctr = 0
+        self.section_xdata = []
+        self.section_ydata = []
+        self.section_xcoord = []
+        self.section_ycoord = []
+
         # start and stop continue button
         self.update_timer = QtCore.QTimer()
         self.update_timer.timeout.connect(self.update_movie)
@@ -14,16 +24,29 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.lineEditExposureTime.setText(str(self.cam_controller.cam.ExposureTime()))
         self.lineEditExposureTime.returnPressed.connect(self.set_exptime)
 
+        self.plotx = PlotWidget(self.centralwidget)
+        self.plotx.setObjectName("plotx")
+        self.gridLayoutImage.addWidget(self.plotx, 1, 0, 1, 1)
+        self.sectionx_line = self.plotx.plot(self.section_xcoord,self.section_xdata)
+
+        self.ploty = PlotWidget(self.centralwidget)
+        self.ploty.setObjectName("ploty")
+        self.gridLayoutImage.addWidget(self.ploty,  0, 1, 1, 1)
+        self.sectiony_line = self.ploty.plot(self.section_ydata,self.section_ycoord)
+
     def start_continue(self):
         self.cam_controller.start_continue()
         self.pushButtonContinue.setText("Stop Continue")
         self.pushButtonContinue.clicked.disconnect()
         self.pushButtonContinue.clicked.connect(self.stop_continue)
-        self.update_timer.start(50)
+        # self.t0 = time.time()
+        self.update_timer.start(200)
         # print('click')
 
     def stop_continue(self):
         self.update_timer.stop()
+        # print("--- %.8f seconds ---" % (time.time() - self.t0))
+        # print("no frames : %d"%(self.cam_controller.framecount))
         self.cam_controller.stop_continue()
         self.pushButtonContinue.setText("Start Continue")
         self.pushButtonContinue.clicked.disconnect()
@@ -31,14 +54,23 @@ class Ui_CustomWindow(Ui_MainWindow):
 
     def update_movie(self):
         self.cam_controller.acquire_continue()
-        xx, yy = np.meshgrid(np.arange(4000), np.arange(3000))
-        p, ier = fitgauss2d_section(np.arange(0, 4000), np.arange(0, 3000), self.cam_controller.frame)
+        self.update_plot()
+        p, ier = fitgauss2d_section(np.arange(0, self.cam_controller.frame.shape[1]),
+                                    np.arange(0, self.cam_controller.frame.shape[0]), self.cam_controller.frame)
         self.lineEditxCenter.setText('%.4f' % (p[0]))
         self.lineEdityCenter.setText('%.4f' % (p[1]))
         self.lineEditxWaist.setText('%.4f' % (p[2]))
         self.lineEdityWaist.setText('%.4f' % (p[3]))
         self.lineEditHeight.setText('%.4f' % (p[4]))
         self.labelImage.setPixmap(QtGui.QPixmap(self.toQImage()))
+
+    def update_plot(self):
+        self.section_xcoord = np.arange(0, self.cam_controller.frame.shape[1])
+        self.section_xdata = self.cam_controller.frame[self.section_yctr,::]
+        self.sectionx_line.setData(self.section_xcoord, self.section_xdata)
+        self.section_ycoord = np.arange(0, self.cam_controller.frame.shape[0])
+        self.section_ydata = self.cam_controller.frame[::,self.section_xctr]
+        self.sectiony_line.setData(self.section_ydata,self.section_ycoord)
 
     def toQImage(self, copy=False):
         '''
@@ -60,5 +92,3 @@ class Ui_CustomWindow(Ui_MainWindow):
             print('ValueError: %s' % ex)
             return
         self.cam_controller.configure_exposure(exptime)
-
-

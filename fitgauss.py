@@ -160,6 +160,10 @@ if __name__ == '__main__':
     zz = gauss2d(1000, 1000, 100, 400, 1, 0, xx, yy) + 1 + np.random.rand(*(xx.shape)) * 0.5
     surf = ax.plot_surface(xx, yy, zz, cmap=cm.coolwarm, linewidth=0, antialiased=True)
     plt.show()
+    start_time = time.time()
+    for i in range(1000):
+        fitgauss2d_section(np.arange(0, 4000), np.arange(0, 3000), zz)
+    print("--- %.8f seconds ---" % (time.time() - start_time))
     print(fitgauss2d_section(np.arange(0, 4000), np.arange(0, 3000), zz))
 
     # xx = np.arange(0, 4000, 1) * 0.57

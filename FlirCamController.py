@@ -12,6 +12,7 @@ class FlirCamController:
         self.flag_continue = False
 
         self.frame = []
+        self.framecount = 0
 
         # Retrieve singleton reference to system object
         self.system = PySpin.System.GetInstance()
@@ -61,7 +62,7 @@ class FlirCamController:
         if self.flag_continue:
             print('Acquisition already started...')
             return
-        
+
         try:
             result = True
 
@@ -178,6 +179,7 @@ class FlirCamController:
         #  images) need to be released in order to keep from filling the
         #  buffer.
         image_result.Release()
+        self.framecount += 1
 
         return image_data
 

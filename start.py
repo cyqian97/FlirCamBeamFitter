@@ -1,12 +1,18 @@
 from FlirCamController import FlirCamController
-from FlirWindow import Ui_MainWindow
 from FlirWindowModify import Ui_CustomWindow
 import matplotlib.pyplot as plt
 import qdarkstyle
 import sys
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtWidgets
+import time
 
 flir = FlirCamController()
+# flir.start_continue()
+
+# start_time = time.time()
+# for i in range(100):
+#     flir.acquire_continue()
+# print("--- %.8f seconds ---" % (time.time() - start_time))
 # plt.imshow(flir.acquire_continue())
 # plt.show()
 
@@ -17,7 +23,6 @@ ui = Ui_CustomWindow()
 ui.cam_controller = flir
 ui.setupUi(MainWindow)
 ui.custom_init()
-
 MainWindow.show()
 app.exec_()
 flir.stop_continue()
