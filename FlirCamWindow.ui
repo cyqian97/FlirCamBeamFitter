@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>980</width>
-    <height>730</height>
+    <width>996</width>
+    <height>696</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,14 +20,11 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <layout class="QGridLayout" name="gridLayout_4">
+   <layout class="QGridLayout" name="gridLayoutCenter">
     <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontalLayoutWhole" stretch="3,1">
       <item>
        <layout class="QGridLayout" name="gridLayoutImage" rowstretch="3,1" columnstretch="3,1">
-        <item row="0" column="0">
-         <widget class="QGraphicsView" name="graphicsView"/>
-        </item>
         <item row="0" column="1">
          <widget class="QLabel" name="labelyplot">
           <property name="text">
@@ -87,19 +84,63 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="lineEditxWaist"/>
+           <widget class="QLineEdit" name="lineEditxWaist">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEditxCenter"/>
+           <widget class="QLineEdit" name="lineEditxCenter">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEdityCenter"/>
+           <widget class="QLineEdit" name="lineEdityCenter">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QLineEdit" name="lineEdityWaist"/>
+           <widget class="QLineEdit" name="lineEdityWaist">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QLineEdit" name="lineEditHeight"/>
+           <widget class="QLineEdit" name="lineEditHeight">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
           </item>
           <item row="5" column="1">
            <layout class="QHBoxLayout" name="horizontalLayoutUnit">
@@ -109,7 +150,7 @@
                <string>um</string>
               </property>
               <property name="checked">
-               <bool>true</bool>
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -118,21 +159,46 @@
               <property name="text">
                <string>pixel</string>
               </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
            </layout>
           </item>
          </layout>
         </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelImage">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>4000</width>
+            <height>3000</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayoutRight" stretch="2,0,3">
+       <layout class="QVBoxLayout" name="verticalLayoutRight" stretch="0,0,0">
         <property name="spacing">
          <number>7</number>
         </property>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayoutControl" stretch="0,0,0,1">
+         <layout class="QVBoxLayout" name="verticalLayoutControl" stretch="0,0,0,2">
           <property name="spacing">
            <number>10</number>
           </property>
@@ -176,45 +242,30 @@
            </widget>
           </item>
           <item>
-           <layout class="QGridLayout" name="gridLayoutControlValues" columnstretch="1,0" columnminimumwidth="0,0">
+           <layout class="QGridLayout" name="gridLayoutControlValues" rowstretch="1,0,0,0,0" columnstretch="1,0">
             <property name="horizontalSpacing">
              <number>7</number>
             </property>
             <property name="verticalSpacing">
-             <number>0</number>
+             <number>20</number>
             </property>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_8">
-              <property name="text">
-               <string>Section X:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1" alignment="Qt::AlignVCenter">
-             <widget class="QLineEdit" name="lineEditExposureTime">
+            <item row="3" column="1" alignment="Qt::AlignVCenter">
+             <widget class="QLineEdit" name="lineEditSectionY">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelExposure">
               <property name="text">
-               <string>Exposure Time:</string>
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
              </widget>
             </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_9">
-              <property name="text">
-               <string>Section Y:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1" alignment="Qt::AlignVCenter">
+            <item row="2" column="1" alignment="Qt::AlignVCenter">
              <widget class="QLineEdit" name="lineEditSectionX">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -225,18 +276,94 @@
               <property name="text">
                <string>0</string>
               </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
              </widget>
             </item>
-            <item row="2" column="1" alignment="Qt::AlignVCenter">
-             <widget class="QLineEdit" name="lineEditSectionY">
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_8">
+              <property name="text">
+               <string>Section X (pixel) :</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_9">
+              <property name="text">
+               <string>Section Y (pixel) :</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelExposure">
+              <property name="text">
+               <string>Exposure Time (us)  :</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1" alignment="Qt::AlignVCenter">
+             <widget class="QLineEdit" name="lineEditExposureTime">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLineEdit" name="lineEdit">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
-               <string>0</string>
+               <string>1</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelAutoExposure">
+              <property name="text">
+               <string>Auto Exposure :</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>Multi Frame :</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QCheckBox" name="checkBoxAutoExposure">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -252,7 +379,12 @@
          </widget>
         </item>
         <item>
-         <widget class="QTextBrowser" name="textBrowserLog"/>
+         <widget class="QPlainTextEdit" name="plainTextEdit">
+          <property name="plainText">
+           <string>aa
+bb</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -265,7 +397,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>980</width>
+     <width>996</width>
      <height>26</height>
     </rect>
    </property>
