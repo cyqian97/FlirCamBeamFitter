@@ -43,6 +43,10 @@ class Ui_CustomWindow(Ui_MainWindow):
         # auto exposure check box
         self.checkBoxAutoExposure.stateChanged.connect(self.checkbox_auto_exposure)
 
+        # background
+        self.pushButtonSetBg.clicked.connect(self.set_background)
+        self.pushButtonClearBg.clicked.connect(self.clear_background)
+
     def start_continue(self):
         self.cam_controller.start_continue()
         self.pushButtonContinue.setText("Stop Continue")
@@ -73,7 +77,6 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.lineEditHeight.setText('%.4f' % (p[4]))
         self.labelImage.setPixmap(QtGui.QPixmap(self.toQImage()))
         if self.checkBoxAutoExposure.isChecked():
-            print('refresh')
             self.lineEditExposureTime.setText(str(self.cam_controller.cam.ExposureTime()))
 
     def update_plot(self):
@@ -122,3 +125,9 @@ class Ui_CustomWindow(Ui_MainWindow):
             self.cam_controller.reset_exposure()
         else:
             self.set_exptime()
+
+    def set_background(self):
+        self.cam_controller.background = self.cam_controller.frame
+
+    def clear_background(self):
+        self.cam_controller.background = self.cam_controller.nobackground

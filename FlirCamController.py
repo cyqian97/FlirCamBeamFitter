@@ -1,5 +1,5 @@
 import PySpin
-from numpy import zeros
+from numpy import zeros, uint8
 
 
 def check_available_writable(node):
@@ -16,8 +16,9 @@ class FlirCamController:
         self.flag_continue = False
         self.framewidth = 2000
         self.frameheight = 1500
-        self.frame = zeros((self.frameheight,self.framewidth))
-        self.background = zeros((self.frameheight,self.framewidth))
+        self.frame = zeros((self.frameheight,self.framewidth),dtype= uint8)
+        self.background = zeros((self.frameheight,self.framewidth),dtype= uint8)
+        self.nobackground = zeros((self.frameheight,self.framewidth),dtype= uint8)
         self.framecount = 0
         self.exposuretimeupperlimit = 1000000
 
@@ -207,7 +208,10 @@ class FlirCamController:
         else:
             # Getting the image data as a numpy array
             image_data = image_result.GetNDArray()
-            self.frame = image_data
+            temp_background = self.background
+            badpoints = temp_background>image_data
+            temp_background[badpoints] = image_data[badpoints]
+            self.frame = image_data - temp_background
 
         #  Release image
         #
