@@ -21,6 +21,12 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.save_dir = os.getcwd()
         self.unit = 0
 
+        # logging
+        self.cam_controller.log = self.plainTextEditLog
+
+        #init
+        self.cam_controller.initialize()
+
         # init start and stop continue button
         self.update_timer = QtCore.QTimer()
         self.update_timer.timeout.connect(self.update_movie)
@@ -44,10 +50,15 @@ class Ui_CustomWindow(Ui_MainWindow):
         # set section to the center
         self.pushButtonSectionCenter.clicked.connect(self.section_center)
 
+        # set section center by line edit
+        self.lineEditSectionX.returnPressed.connect(self.section_center_line_edit)
+        self.lineEditSectionY.returnPressed.connect(self.section_center_line_edit)
+
         # image label mouse press event
         self.labelImage.mousePressEvent = self.label_mousepress()
 
         # auto exposure check box
+        self.checkbox_auto_exposure()
         self.checkBoxAutoExposure.stateChanged.connect(self.checkbox_auto_exposure)
 
         # background
@@ -55,7 +66,7 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.pushButtonClearBg.clicked.connect(self.clear_background)
 
         # average frames
-        self.cam_controller.average_frames = int(self.lineEditAverageFrames.text())
+        self.cam_controller.set_average_frames(self.lineEditAverageFrames.text())
         self.lineEditAverageFrames.returnPressed.connect(self.set_average_frames)
 
         # save file
@@ -125,12 +136,7 @@ class Ui_CustomWindow(Ui_MainWindow):
         return qim.copy() if copy else qim
 
     def set_exptime(self):
-        try:
-            exptime = float(self.lineEditExposureTime.text())
-        except ValueError as ex:
-            print('ValueError: %s' % ex)
-            return
-        self.cam_controller.configure_exposure(exptime)
+        self.cam_controller.configure_exposure(self.lineEditExposureTime.text())
         self.lineEditExposureTime.setText(str(self.cam_controller.get_exposure()))
 
     def label_mousepress(self):
@@ -152,6 +158,15 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.lineEditSectionX.setText(str(self.section_xctr))
         self.lineEditSectionY.setText(str(self.section_yctr))
 
+    def section_center_line_edit(self):
+        try:
+            self.section_xctr = round(float(self.lineEditSectionX.text())/self.unit)
+            self.section_yctr = round(float(self.lineEditSectionY.text())/self.unit)
+        except ValueError as ex:
+            self.lineEditSectionX(str(self.section_xctr))
+            self.lineEditSectionY(str(self.section_yctr))
+            self.plainTextEditLog.insertPlainText('ValueError: %s' %(ex))
+
     def checkbox_auto_exposure(self):
         if self.checkBoxAutoExposure.isChecked():
             self.cam_controller.reset_exposure()
@@ -165,20 +180,24 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.cam_controller.clear_background()
 
     def set_average_frames(self):
-        average_frames = max(1,int(self.lineEditAverageFrames.text()))
-        self.cam_controller.average_frames = average_frames
-        print("The number of frames to be averaged is set to %d"%(average_frames))
+        if not self.cam_controller.set_average_frames(self.lineEditAverageFrames.text()):
+            self.lineEditAverageFrames.setText(str(self.cam_controller.average_frames))
 
     def file_save(self):
         frametosave = self.cam_controller.frame
         filename = "cx"+self.lineEditxCenter.text()+"cy"+self.lineEdityCenter.text() \
             + "wx" + self.lineEditxWaist.text() + "wy" +self.lineEdityWaist.text() \
-            + "h" + self.lineEditHeight.text() + ".jpg"
-
+            + "h" + self.lineEditHeight.text()
+        if self.radioButtonUnitPixel.isChecked():
+            filename += "pixel"
+        else:
+            filename += "um"
+        filename  += ".jpg"
         name = QtGui.QFileDialog.getSaveFileName(self.mainwindow, 'Save File',os.path.join(self.save_dir,filename),"Images (*.png *.jpg)")[0]
         if not name is '':
             self.save_dir = os.path.split(name)[0]
             cv2.imwrite(name,frametosave)
+            self.plainTextEditLog.insertPlainText('Picture saved to %s\n'%(name))
 
     def unit_change(self):
         if self.radioButtonUnitPixel.isChecked():

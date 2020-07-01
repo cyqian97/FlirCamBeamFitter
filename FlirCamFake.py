@@ -9,7 +9,7 @@ class FakeCam:
 
 
 class FakeCamContoller:
-    def __init__(self):
+    def initialize(self):
         # Flag representing the status of the continue mode
         self.flag_continue = False
         self.framewidth = 0
@@ -23,11 +23,6 @@ class FakeCamContoller:
         self.pixel_size = 1.85 #um
         self.device_temperature = 0
         self.device_temp_lim = 50
-        self.cam_init_setting()
-
-    def cam_init_setting(self):
-
-        result = True
 
         # set frame size after binning
         self.framewidth = 2000
@@ -37,10 +32,8 @@ class FakeCamContoller:
         self.nobackground = zeros((self.frameheight, self.framewidth), dtype=uint8)
         self.floatzeroframe = zeros((self.frameheight, self.framewidth))
 
-
-
     def close(self):
-        print('Camera closed...')
+        self.update_log('Camera closed...')
 
     def start_continue(self):
         # :param cam: Camera to run on.
@@ -48,11 +41,11 @@ class FakeCamContoller:
         # :return: True if successful, False otherwise.
         # :rtype: bool
         if self.flag_continue:
-            print('Acquisition already started...')
+            self.update_log('Acquisition already started...')
             return
 
         self.flag_continue = True
-        print('Acquiring images...')
+        self.update_log('Acquiring images...')
 
         return True
 
@@ -64,9 +57,9 @@ class FakeCamContoller:
         #  properly and do not need to be power-cycled to maintain integrity.
         if self.flag_continue:
             self.flag_continue = False
-            print('Stop acquiring images...')
+            self.update_log('Stop acquiring images...')
         else:
-            print('Acquiring already stopped...')
+            self.update_log('Acquiring already stopped...')
         return True
 
     def acquire_continue(self):
@@ -83,21 +76,30 @@ class FakeCamContoller:
 
         return image_data
 
+    def set_average_frames(self, average_frames_str):
+        try:
+            self.average_frames = max(1, int(average_frames_str))
+        except ValueError as ex:
+            self.update_log('ValueError: %s' % ex)
+            return False
+        self.update_log('Average frame number : %d'%(self.average_frames))
+        return True
+
     def configure_exposure(self,exposure_time_to_set):
-        print('*** CONFIGURING EXPOSURE ***\n')
+        self.update_log('*** CONFIGURING EXPOSURE ***\n')
 
         try:
             result = True
-            print('Exposure time set to %s us...\n' % 10)
+            self.update_log('Exposure time set to %s us...\n' % 10)
 
         except PySpin.SpinnakerException as ex:
-            print('Error: %s' % ex)
+            self.update_log('Error: %s' % ex)
             result = False
 
         return result
 
     def reset_exposure(self):
-        print('Automatic exposure enabled...')
+        self.update_log('Automatic exposure enabled...')
 
         return True
 
@@ -113,7 +115,13 @@ class FakeCamContoller:
 
     def clear_background(self):
         self.background = self.nobackground
-
+        
+    def update_log(self, log):
+        self.log.insertPlainText(log)
+        self.log.insertPlainText('\n')
+        
+    def check_available_writable(self, node):
+        return True
 
 if __name__ == '__main__':
     import matplotlib.pyplot as plt
@@ -122,7 +130,7 @@ if __name__ == '__main__':
     flir.acquire_continue()
     flir.acquire_continue()
     flir.acquire_continue()
-    print(flir.frame.shape)
+    self.update_log(flir.frame.shape)
     plt.imshow(flir.frame)
     plt.show()
     flir.stop_continue()

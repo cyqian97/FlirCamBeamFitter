@@ -6,8 +6,8 @@ import sys
 from PyQt5 import QtWidgets
 import time
 
-flir = FlirCamController()
-# flir = FakeCamContoller()
+# flir = FlirCamController()
+flir = FakeCamContoller()
 
 # flir.start_continue()
 # start_time = time.time()

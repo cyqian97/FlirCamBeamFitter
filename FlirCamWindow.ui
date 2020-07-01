@@ -368,7 +368,7 @@
                <string/>
               </property>
               <property name="checked">
-               <bool>true</bool>
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -386,8 +386,7 @@
         <item>
          <widget class="QPlainTextEdit" name="plainTextEditLog">
           <property name="plainText">
-           <string>=== Log ===
-</string>
+           <string/>
           </property>
          </widget>
         </item>
