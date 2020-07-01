@@ -21,6 +21,8 @@ class FakeCamContoller:
         self.exposuretimeupperlimit = 1000000
         self.average_frames = 0
         self.pixel_size = 1.85 #um
+        self.device_temperature = 0
+        self.device_temp_lim = 50
         self.cam_init_setting()
 
     def cam_init_setting(self):
@@ -101,6 +103,10 @@ class FakeCamContoller:
 
     def get_exposure(self):
         return 10
+
+    def get_temperature(self):
+        self.device_temperature = 51
+        return
 
     def set_background(self):
         self.background = self.frame

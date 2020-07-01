@@ -66,6 +66,11 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.unit_change()
         self.radioButtonUnitPixel.toggled.connect(self.unit_change)
 
+        # temperature monitor
+        self.temperature_timer = QtCore.QTimer()
+        self.temperature_timer.timeout.connect(self.update_temperature)
+        self.temperature_timer.start(1000)
+
     def start_continue(self):
         self.cam_controller.start_continue()
         self.pushButtonContinue.setText("Stop Continue")
@@ -180,3 +185,8 @@ class Ui_CustomWindow(Ui_MainWindow):
             self.unit = 1
         else:
             self.unit = self.cam_controller.pixel_size
+
+    def update_temperature(self):
+        self.cam_controller.get_temperature()
+        if self.cam_controller.device_temperature > self.cam_controller.device_temp_lim:
+            self.statusbar.showMessage("Warning: device temperature too high! T = %.1f > %.1f"%(self.cam_controller.device_temperature,self.cam_controller.device_temp_lim))

@@ -24,6 +24,8 @@ class FlirCamController:
         self.exposuretimeupperlimit = 1000000
         self.average_frames = 0
         self.pixel_size = 1.85 #um
+        self.device_temperature = 0
+        self.device_temp_lim = 50
 
         # Retrieve singleton reference to system object
         self.system = PySpin.System.GetInstance()
@@ -362,6 +364,10 @@ class FlirCamController:
 
     def get_exposure(self):
         return self.cam.ExposureTime()
+
+    def get_temperature(self):
+        self.device_temperature = self.cam.DeviceTemperature()
+        return
 
     def set_background(self):
         self.background = self.frame
