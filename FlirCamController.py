@@ -14,13 +14,15 @@ class FlirCamController:
     def __init__(self):
         # Flag representing the status of the continue mode
         self.flag_continue = False
-        self.framewidth = 2000
-        self.frameheight = 1500
-        self.frame = zeros((self.frameheight,self.framewidth),dtype= uint8)
-        self.background = zeros((self.frameheight,self.framewidth),dtype= uint8)
-        self.nobackground = zeros((self.frameheight,self.framewidth),dtype= uint8)
+        self.framewidth = 0
+        self.frameheight = 0
+        self.frame = []
+        self.background = []
+        self.nobackground = []
+        self.floatzeroframe = []
         self.framecount = 0
         self.exposuretimeupperlimit = 1000000
+        self.average_frames = 0
 
         # Retrieve singleton reference to system object
         self.system = PySpin.System.GetInstance()
@@ -58,22 +60,33 @@ class FlirCamController:
         node_binninghorizontal = PySpin.CIntegerPtr(nodemap.GetNode('BinningHorizontal'))
         if not check_available_writable(node_binninghorizontal): return False
         node_binninghorizontal.SetValue(2)
-        print('%s is set to %f'%(node_binninghorizontal.GetDisplayName(),node_binninghorizontal.GetValue()))
+        print('%s is set to %f' % (node_binninghorizontal.GetDisplayName(), node_binninghorizontal.GetValue()))
 
         node_binningvertical = PySpin.CIntegerPtr(nodemap.GetNode('BinningVertical'))
         if not check_available_writable(node_binningvertical): return False
         node_binningvertical.SetValue(2)
-        print('%s is set to %f'%(node_binningvertical.GetDisplayName(),node_binningvertical.GetValue()))
+        print('%s is set to %f' % (node_binningvertical.GetDisplayName(), node_binningvertical.GetValue()))
 
+        # set frame size after binning
+        self.framewidth = 2000
+        self.frameheight = 1500
+        self.frame = zeros((self.frameheight, self.framewidth), dtype=uint8)
+        self.background = zeros((self.frameheight, self.framewidth), dtype=uint8)
+        self.nobackground = zeros((self.frameheight, self.framewidth), dtype=uint8)
+        self.floatzeroframe = zeros((self.frameheight, self.framewidth))
+
+        # set lower and upper limit of auto exposure time
         node_exposuretimelowerlimit = PySpin.CFloatPtr(nodemap.GetNode('AutoExposureExposureTimeLowerLimit'))
         if not check_available_writable(node_exposuretimelowerlimit): return False
         node_exposuretimelowerlimit.SetValue(self.cam.ExposureTime.GetMin())
-        print('%s is set to %f'%(node_exposuretimelowerlimit.GetDisplayName(),node_exposuretimelowerlimit.GetValue()))
+        print(
+            '%s is set to %f' % (node_exposuretimelowerlimit.GetDisplayName(), node_exposuretimelowerlimit.GetValue()))
 
         node_exposuretimeupperlimit = PySpin.CFloatPtr(nodemap.GetNode('AutoExposureExposureTimeUpperLimit'))
         if not check_available_writable(node_exposuretimeupperlimit): return False
         node_exposuretimeupperlimit.SetValue(self.exposuretimeupperlimit)
-        print('%s is set to %f'%(node_exposuretimeupperlimit.GetDisplayName(),node_exposuretimeupperlimit.GetValue()))
+        print(
+            '%s is set to %f' % (node_exposuretimeupperlimit.GetDisplayName(), node_exposuretimeupperlimit.GetValue()))
 
         self.reset_exposure()
 
@@ -198,20 +211,42 @@ class FlirCamController:
             print('Acquiring already stopped...')
 
     def acquire_continue(self):
-        image_data = []
-        image_result = self.cam.GetNextImage(self.exposuretimeupperlimit)  # GetNextImage( grabTimeout )
+        frames_succ = self.average_frames
+        image_data = self.floatzeroframe.copy()
+        for i in range(self.average_frames):
+            image_result = self.cam.GetNextImage(self.exposuretimeupperlimit)  # GetNextImage( grabTimeout )
+            if image_result.IsIncomplete():
+                print('Image incomplete with image status %d ...' % image_result.GetImageStatus())
+                image_result.Release()
+                frames_succ -= 1
+            else:
+                image_data += image_result.GetNDArray().astype(float)
+                image_result.Release()
+
+        if frames_succ == 0:
+            return
+        image_data = image_data / frames_succ - self.background
+        image_data[image_data < 0] = 0
+        self.frame = image_data.astype(uint8)
 
         #  Ensure image completion
-        if image_result.IsIncomplete():
-            print('Image incomplete with image status %d ...' % image_result.GetImageStatus())
-
-        else:
-            # Getting the image data as a numpy array
-            image_data = image_result.GetNDArray()
-            temp_background = self.background
-            badpoints = temp_background>image_data
-            temp_background[badpoints] = image_data[badpoints]
-            self.frame = image_data - temp_background
+        # if image_result.IsIncomplete():
+        #     print('Image incomplete with image status %d ...' % image_result.GetImageStatus())
+        #     image_result.Release()
+        #
+        # else:
+        #     # Getting the image data as a numpy array
+        #     image_data = image_result.GetNDArray()
+        #     if self.average_frames > 1:
+        #         image_data = image_data.astype(float) / self.average_frames
+        #         for i in range(self.average_frames - 1):
+        #             image_data += image_result.GetNDArray().astype(float) / self.average_frames
+        #         image_data = image_data.astype(uint8)
+        #
+        #     temp_background = self.background
+        #     badpoints = temp_background > image_data
+        #     temp_background[badpoints] = image_data[badpoints]
+        #     self.frame = image_data - temp_background
 
         #  Release image
         #
@@ -219,10 +254,8 @@ class FlirCamController:
         #  Images retrieved directly from the camera (i.e. non-converted
         #  images) need to be released in order to keep from filling the
         #  buffer.
-        image_result.Release()
-        self.framecount += 1
 
-        return image_data
+        return
 
     def configure_exposure(self, exposure_time_to_set):
         """
@@ -325,6 +358,12 @@ class FlirCamController:
             result = False
 
         return result
+
+    def set_background(self):
+        self.background = self.frame
+
+    def clear_background(self):
+        self.background = self.nobackground
 
 
 if __name__ == '__main__':

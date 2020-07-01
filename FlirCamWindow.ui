@@ -30,42 +30,42 @@
           <item row="2" column="0">
            <widget class="QLabel" name="labelxWaist">
             <property name="text">
-             <string>x waist</string>
+             <string>X Waist</string>
             </property>
            </widget>
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="labelHeight">
             <property name="text">
-             <string>height</string>
+             <string>Height</string>
             </property>
            </widget>
           </item>
           <item row="5" column="0">
            <widget class="QLabel" name="labelUnit">
             <property name="text">
-             <string>unit</string>
+             <string>Unit</string>
             </property>
            </widget>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelyCenter">
             <property name="text">
-             <string>y center</string>
+             <string>Y Center</string>
             </property>
            </widget>
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="labelyWaist">
             <property name="text">
-             <string>y waist</string>
+             <string>Y Waist</string>
             </property>
            </widget>
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="labelxCenter">
             <property name="text">
-             <string>x center</string>
+             <string>X Center:</string>
             </property>
            </widget>
           </item>
@@ -302,7 +302,7 @@
              </widget>
             </item>
             <item row="4" column="1">
-             <widget class="QLineEdit" name="lineEdit">
+             <widget class="QLineEdit" name="lineEditAverageFrames">
               <property name="sizePolicy">
                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -327,7 +327,7 @@
             <item row="4" column="0">
              <widget class="QLabel" name="label">
               <property name="text">
-               <string>Multi Frame :</string>
+               <string>Average Frames :</string>
               </property>
              </widget>
             </item>

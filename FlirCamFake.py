@@ -1,5 +1,6 @@
 import PySpin
 from fitgauss import gauss2d
+from numpy import zeros, uint8
 import numpy as np
 
 class FakeCam:
@@ -11,11 +12,25 @@ class FakeCamContoller:
     def __init__(self):
         # Flag representing the status of the continue mode
         self.flag_continue = False
+        self.framewidth = 0
+        self.frameheight = 0
         self.frame = []
+        self.background = []
+        self.nobackground = []
+        self.framecount = 0
+        self.exposuretimeupperlimit = 1000000
+        self.average_frames = 0
+    def cam_init_setting(self):
+
+        result = True
+
+        # set frame size after binning
         self.framewidth = 2000
         self.frameheight = 1500
-        self.framecount = 0
-        self.cam = FakeCam()
+        self.frame = zeros((self.frameheight,self.framewidth),dtype= uint8)
+        self.background = zeros((self.frameheight,self.framewidth),dtype= uint8)
+        self.nobackground = zeros((self.frameheight,self.framewidth),dtype= uint8)
+
 
     def close(self):
         print('Camera closed...')
@@ -50,6 +65,11 @@ class FakeCamContoller:
     def acquire_continue(self):
         xx, yy = np.meshgrid(np.arange(self.framewidth), np.arange(self.frameheight))
         image_data = (gauss2d(500, 800, 100, 400, 1, 0, xx, yy) + 1 + np.random.rand(*(xx.shape)) * 0.5)*50
+        if self.average_frames > 1:
+            image_data = image_data/self.average_frames
+            for i in range(self.average_frames - 1):
+                image_data += ((gauss2d(500, 800, 100, 400, 1, 0, xx, yy) + 1 + np.random.rand(*(xx.shape)) * 0.5)*50) / self.average_frames
+
         image_data = image_data.astype(np.uint8)
         self.frame = image_data
         self.framecount += 1

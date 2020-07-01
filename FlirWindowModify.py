@@ -47,6 +47,10 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.pushButtonSetBg.clicked.connect(self.set_background)
         self.pushButtonClearBg.clicked.connect(self.clear_background)
 
+        # average frames
+        self.cam_controller.average_frames = int(self.lineEditAverageFrames.text())
+        self.lineEditAverageFrames.returnPressed.connect(self.set_average_frames)
+
     def start_continue(self):
         self.cam_controller.start_continue()
         self.pushButtonContinue.setText("Stop Continue")
@@ -107,6 +111,7 @@ class Ui_CustomWindow(Ui_MainWindow):
             print('ValueError: %s' % ex)
             return
         self.cam_controller.configure_exposure(exptime)
+        self.lineEditExposureTime.setText(str(self.cam_controller.cam.ExposureTime()))
 
     def label_mousepress(self):
         def mousepress(eventQMouseEvent):
@@ -118,6 +123,7 @@ class Ui_CustomWindow(Ui_MainWindow):
             self.section_yctr = round(self.cam_controller.frameheight*mouse_y/label_height)
             self.lineEditSectionX.setText(str(self.section_xctr))
             self.lineEditSectionY.setText(str(self.section_yctr))
+            self.update_plot()
         return mousepress
 
     def checkbox_auto_exposure(self):
@@ -127,7 +133,12 @@ class Ui_CustomWindow(Ui_MainWindow):
             self.set_exptime()
 
     def set_background(self):
-        self.cam_controller.background = self.cam_controller.frame
+        self.cam_controller.set_background()
 
     def clear_background(self):
-        self.cam_controller.background = self.cam_controller.nobackground
+        self.cam_controller.clear_background()
+
+    def set_average_frames(self):
+        average_frames = max(1,int(self.lineEditAverageFrames.text()))
+        self.cam_controller.average_frames = average_frames
+        print("The number of frames to be averaged is set to %d"%(average_frames))
