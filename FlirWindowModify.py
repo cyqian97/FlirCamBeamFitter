@@ -19,6 +19,7 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.section_xcoord = []
         self.section_ycoord = []
         self.save_dir = os.getcwd()
+        self.unit = 0
 
         # init start and stop continue button
         self.update_timer = QtCore.QTimer()
@@ -61,6 +62,10 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.actionsave_image_2.setStatusTip('Save File')
         self.actionsave_image_2.triggered.connect(self.file_save)
 
+        # unit
+        self.unit_change()
+        self.radioButtonUnitPixel.toggled.connect(self.unit_change)
+
     def start_continue(self):
         self.cam_controller.start_continue()
         self.pushButtonContinue.setText("Stop Continue")
@@ -84,10 +89,10 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.update_plot()
         p, ier = fitgauss2d_section(np.arange(0, self.cam_controller.frame.shape[1]),
                                     np.arange(0, self.cam_controller.frame.shape[0]), self.cam_controller.frame)
-        self.lineEditxCenter.setText('%.4f' % (p[0]))
-        self.lineEdityCenter.setText('%.4f' % (p[1]))
-        self.lineEditxWaist.setText('%.4f' % (p[2]))
-        self.lineEdityWaist.setText('%.4f' % (p[3]))
+        self.lineEditxCenter.setText('%.4f' % (p[0]*self.unit))
+        self.lineEdityCenter.setText('%.4f' % (p[1]*self.unit))
+        self.lineEditxWaist.setText('%.4f' % (p[2]*self.unit))
+        self.lineEdityWaist.setText('%.4f' % (p[3]*self.unit))
         self.lineEditHeight.setText('%.4f' % (p[4]))
         self.labelImage.setPixmap(QtGui.QPixmap(self.toQImage()))
         if self.checkBoxAutoExposure.isChecked():
@@ -137,8 +142,10 @@ class Ui_CustomWindow(Ui_MainWindow):
         return mousepress
 
     def section_center(self):
-        self.section_xctr = round(float(self.lineEditxCenter.text()))
-        self.section_yctr = round(float(self.lineEdityCenter.text()))
+        self.section_xctr = round(float(self.lineEditxCenter.text())/self.unit)
+        self.section_yctr = round(float(self.lineEdityCenter.text())/self.unit)
+        self.lineEditSectionX.setText(str(self.section_xctr))
+        self.lineEditSectionY.setText(str(self.section_yctr))
 
     def checkbox_auto_exposure(self):
         if self.checkBoxAutoExposure.isChecked():
@@ -167,3 +174,9 @@ class Ui_CustomWindow(Ui_MainWindow):
         if not name is '':
             self.save_dir = os.path.split(name)[0]
             cv2.imwrite(name,frametosave)
+
+    def unit_change(self):
+        if self.radioButtonUnitPixel.isChecked():
+            self.unit = 1
+        else:
+            self.unit = self.cam_controller.pixel_size

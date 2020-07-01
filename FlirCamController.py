@@ -23,6 +23,7 @@ class FlirCamController:
         self.framecount = 0
         self.exposuretimeupperlimit = 1000000
         self.average_frames = 0
+        self.pixel_size = 1.85 #um
 
         # Retrieve singleton reference to system object
         self.system = PySpin.System.GetInstance()

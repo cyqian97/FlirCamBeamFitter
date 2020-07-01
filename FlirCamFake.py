@@ -20,6 +20,7 @@ class FakeCamContoller:
         self.framecount = 0
         self.exposuretimeupperlimit = 1000000
         self.average_frames = 0
+        self.pixel_size = 1.85 #um
         self.cam_init_setting()
 
     def cam_init_setting(self):
