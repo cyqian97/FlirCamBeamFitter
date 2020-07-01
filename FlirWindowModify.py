@@ -21,6 +21,9 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.save_dir = os.getcwd()
         self.unit = 0
 
+        #logo
+        mainwindow.setWindowIcon(QtGui.QIcon('logo.png'))
+
         # logging
         self.cam_controller.log = self.plainTextEditLog
 
