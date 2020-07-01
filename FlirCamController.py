@@ -1,15 +1,25 @@
 import PySpin
+from numpy import zeros
+
+
+def check_available_writable(node):
+    if not PySpin.IsAvailable(node) or not PySpin.IsWritable(node):
+        print('Unable to set %s. Aborting...' % (node.GetName()))
+        return False
+
+    return True
 
 
 class FlirCamController:
     def __init__(self):
         # Flag representing the status of the continue mode
         self.flag_continue = False
-
-        self.frame = []
         self.framewidth = 2000
         self.frameheight = 1500
+        self.frame = zeros((self.frameheight,self.framewidth))
+        self.background = zeros((self.frameheight,self.framewidth))
         self.framecount = 0
+        self.exposuretimeupperlimit = 1000000
 
         # Retrieve singleton reference to system object
         self.system = PySpin.System.GetInstance()
@@ -35,6 +45,36 @@ class FlirCamController:
 
             # Initialize camera
             self.cam.Init()
+            self.cam_init_setting()
+
+    def cam_init_setting(self):
+
+        result = True
+
+        nodemap = self.cam.GetNodeMap()
+
+        # Change binning mode to 2x2 to increase frame rate
+        node_binninghorizontal = PySpin.CIntegerPtr(nodemap.GetNode('BinningHorizontal'))
+        if not check_available_writable(node_binninghorizontal): return False
+        node_binninghorizontal.SetValue(2)
+        print('%s is set to %f'%(node_binninghorizontal.GetDisplayName(),node_binninghorizontal.GetValue()))
+
+        node_binningvertical = PySpin.CIntegerPtr(nodemap.GetNode('BinningVertical'))
+        if not check_available_writable(node_binningvertical): return False
+        node_binningvertical.SetValue(2)
+        print('%s is set to %f'%(node_binningvertical.GetDisplayName(),node_binningvertical.GetValue()))
+
+        node_exposuretimelowerlimit = PySpin.CFloatPtr(nodemap.GetNode('AutoExposureExposureTimeLowerLimit'))
+        if not check_available_writable(node_exposuretimelowerlimit): return False
+        node_exposuretimelowerlimit.SetValue(self.cam.ExposureTime.GetMin())
+        print('%s is set to %f'%(node_exposuretimelowerlimit.GetDisplayName(),node_exposuretimelowerlimit.GetValue()))
+
+        node_exposuretimeupperlimit = PySpin.CFloatPtr(nodemap.GetNode('AutoExposureExposureTimeUpperLimit'))
+        if not check_available_writable(node_exposuretimeupperlimit): return False
+        node_exposuretimeupperlimit.SetValue(self.exposuretimeupperlimit)
+        print('%s is set to %f'%(node_exposuretimeupperlimit.GetDisplayName(),node_exposuretimeupperlimit.GetValue()))
+
+        self.reset_exposure()
 
     def close(self):
         # Release reference to camera
@@ -158,7 +198,7 @@ class FlirCamController:
 
     def acquire_continue(self):
         image_data = []
-        image_result = self.cam.GetNextImage(10000)  # GetNextImage( grabTimeout )
+        image_result = self.cam.GetNextImage(self.exposuretimeupperlimit)  # GetNextImage( grabTimeout )
 
         #  Ensure image completion
         if image_result.IsIncomplete():
@@ -180,7 +220,7 @@ class FlirCamController:
 
         return image_data
 
-    def configure_exposure(self,exposure_time_to_set):
+    def configure_exposure(self, exposure_time_to_set):
         """
          This function configures a custom exposure time. Automatic exposure is turned
          off in order to allow for the customization, and then the custom setting is
@@ -239,8 +279,6 @@ class FlirCamController:
                 return False
 
             # Ensure desired exposure time does not exceed the maximum
-            print(self.cam.ExposureTime.GetMax())
-            print(self.cam.ExposureTime.GetMin())
             exposure_time_to_set = min(self.cam.ExposureTime.GetMax(), exposure_time_to_set)
             exposure_time_to_set = max(self.cam.ExposureTime.GetMin(), exposure_time_to_set)
             self.cam.ExposureTime.SetValue(exposure_time_to_set)
@@ -284,8 +322,10 @@ class FlirCamController:
 
         return result
 
+
 if __name__ == '__main__':
     import matplotlib.pyplot as plt
+
     flir = FlirCamController()
     flir.start_continue()
     flir.acquire_continue()

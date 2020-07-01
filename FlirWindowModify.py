@@ -1,9 +1,8 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
-from pyqtgraph import PlotWidget, plot
+from PyQt5 import QtCore, QtGui
+from pyqtgraph import PlotWidget
 from FlirWindow import Ui_MainWindow
 import numpy as np
 from fitgauss import fitgauss2d_section
-import time
 
 
 
@@ -41,6 +40,9 @@ class Ui_CustomWindow(Ui_MainWindow):
         # image label mouse press event
         self.labelImage.mousePressEvent = self.label_mousepress()
 
+        # auto exposure check box
+        self.checkBoxAutoExposure.stateChanged.connect(self.checkbox_auto_exposure)
+
     def start_continue(self):
         self.cam_controller.start_continue()
         self.pushButtonContinue.setText("Stop Continue")
@@ -69,8 +71,10 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.lineEditxWaist.setText('%.4f' % (p[2]))
         self.lineEdityWaist.setText('%.4f' % (p[3]))
         self.lineEditHeight.setText('%.4f' % (p[4]))
-        self.lineEditExposureTime.setText(str(self.cam_controller.cam.ExposureTime()))
         self.labelImage.setPixmap(QtGui.QPixmap(self.toQImage()))
+        if self.checkBoxAutoExposure.isChecked():
+            print('refresh')
+            self.lineEditExposureTime.setText(str(self.cam_controller.cam.ExposureTime()))
 
     def update_plot(self):
         self.section_xcoord = np.arange(0, self.cam_controller.frame.shape[1])
@@ -109,6 +113,12 @@ class Ui_CustomWindow(Ui_MainWindow):
             mouse_y = eventQMouseEvent.pos().y()
             self.section_xctr = round(self.cam_controller.framewidth*mouse_x/label_width)
             self.section_yctr = round(self.cam_controller.frameheight*mouse_y/label_height)
-            print(self.section_xctr)
-            print(self.section_yctr)
+            self.lineEditSectionX.setText(str(self.section_xctr))
+            self.lineEditSectionY.setText(str(self.section_yctr))
         return mousepress
+
+    def checkbox_auto_exposure(self):
+        if self.checkBoxAutoExposure.isChecked():
+            self.cam_controller.reset_exposure()
+        else:
+            self.set_exptime()

@@ -1,12 +1,13 @@
 from FlirCamController import FlirCamController
 from FlirWindowModify import Ui_CustomWindow
-import matplotlib.pyplot as plt
+from FlirCamFake import FakeCamContoller
 import qdarkstyle
 import sys
 from PyQt5 import QtWidgets
 import time
 
 flir = FlirCamController()
+# flir = FakeCamContoller()
 
 # flir.start_continue()
 # start_time = time.time()
