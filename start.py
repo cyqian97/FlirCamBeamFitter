@@ -6,8 +6,8 @@ import sys
 from PyQt5 import QtWidgets
 import time
 
-flir = FlirCamController()
-# flir = FakeCamContoller()
+# flir = FlirCamController()
+flir = FakeCamContoller()
 
 # flir.start_continue()
 # start_time = time.time()
@@ -23,7 +23,7 @@ MainWindow = QtWidgets.QMainWindow()
 ui = Ui_CustomWindow()
 ui.cam_controller = flir
 ui.setupUi(MainWindow)
-ui.custom_init()
+ui.custom_init(MainWindow)
 MainWindow.show()
 app.exec_()
 flir.stop_continue()

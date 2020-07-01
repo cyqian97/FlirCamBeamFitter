@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>996</width>
-    <height>696</height>
+    <width>1090</width>
+    <height>757</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -74,6 +74,9 @@
             <property name="enabled">
              <bool>true</bool>
             </property>
+            <property name="text">
+             <string>0</string>
+            </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
@@ -86,6 +89,9 @@
             </property>
             <property name="layoutDirection">
              <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>0</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -101,7 +107,7 @@
              <enum>Qt::RightToLeft</enum>
             </property>
             <property name="text">
-             <string/>
+             <string>0</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -113,6 +119,9 @@
             <property name="enabled">
              <bool>true</bool>
             </property>
+            <property name="text">
+             <string>0</string>
+            </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
@@ -122,6 +131,9 @@
            <widget class="QLineEdit" name="lineEditHeight">
             <property name="enabled">
              <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>0</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -184,7 +196,7 @@
          <number>7</number>
         </property>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayoutControl" stretch="0,0,0,2">
+         <layout class="QVBoxLayout" name="verticalLayoutControl" stretch="0,0,0,0,2">
           <property name="spacing">
            <number>10</number>
           </property>
@@ -224,6 +236,13 @@
             </property>
             <property name="text">
              <string>Clear Background</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonSectionCenter">
+            <property name="text">
+             <string>Section Center</string>
             </property>
            </widget>
           </item>
@@ -268,14 +287,14 @@
              </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="label_8">
+             <widget class="QLabel" name="labelSectionX">
               <property name="text">
                <string>Section X (pixel) :</string>
               </property>
              </widget>
             </item>
             <item row="3" column="0">
-             <widget class="QLabel" name="label_9">
+             <widget class="QLabel" name="labelSectionY">
               <property name="text">
                <string>Section Y (pixel) :</string>
               </property>
@@ -325,7 +344,7 @@
              </widget>
             </item>
             <item row="4" column="0">
-             <widget class="QLabel" name="label">
+             <widget class="QLabel" name="labelAverageFrames">
               <property name="text">
                <string>Average Frames :</string>
               </property>
@@ -365,10 +384,10 @@
          </widget>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="plainTextEdit">
+         <widget class="QPlainTextEdit" name="plainTextEditLog">
           <property name="plainText">
-           <string>aa
-bb</string>
+           <string>=== Log ===
+</string>
           </property>
          </widget>
         </item>
@@ -379,14 +398,24 @@ bb</string>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>996</width>
+     <width>1090</width>
      <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionsave_image_2"/>
+   </widget>
+   <addaction name="menuFile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionsave">
@@ -398,6 +427,25 @@ bb</string>
    </property>
    <property name="shortcutVisibleInContextMenu">
     <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionsave_image">
+   <property name="text">
+    <string>save image</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionsave_image_2">
+   <property name="text">
+    <string>save image</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
  </widget>

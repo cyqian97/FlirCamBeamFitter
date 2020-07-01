@@ -1,21 +1,24 @@
 from PyQt5 import QtCore, QtGui
 from pyqtgraph import PlotWidget
 from FlirWindow import Ui_MainWindow
-import numpy as np
 from fitgauss import fitgauss2d_section
-
+import numpy as np
+import os
+import cv2
 
 
 
 
 class Ui_CustomWindow(Ui_MainWindow):
-    def custom_init(self):
+    def custom_init(self,mainwindow):
+        self.mainwindow = mainwindow
         self.section_xctr = 0
         self.section_yctr = 0
         self.section_xdata = []
         self.section_ydata = []
         self.section_xcoord = []
         self.section_ycoord = []
+        self.save_dir = os.getcwd()
 
         # init start and stop continue button
         self.update_timer = QtCore.QTimer()
@@ -23,7 +26,7 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.pushButtonContinue.clicked.connect(self.start_continue)
 
         # init exposure time line edit
-        self.lineEditExposureTime.setText(str(self.cam_controller.cam.ExposureTime()))
+        self.lineEditExposureTime.setText(str(self.cam_controller.get_exposure()))
         self.lineEditExposureTime.returnPressed.connect(self.set_exptime)
 
         # init section plots
@@ -36,6 +39,9 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.ploty.setObjectName("ploty")
         self.gridLayoutImage.addWidget(self.ploty,  0, 1, 1, 1)
         self.sectiony_line = self.ploty.plot(self.section_ydata,self.section_ycoord)
+
+        # set section to the center
+        self.pushButtonSectionCenter.clicked.connect(self.section_center)
 
         # image label mouse press event
         self.labelImage.mousePressEvent = self.label_mousepress()
@@ -50,6 +56,10 @@ class Ui_CustomWindow(Ui_MainWindow):
         # average frames
         self.cam_controller.average_frames = int(self.lineEditAverageFrames.text())
         self.lineEditAverageFrames.returnPressed.connect(self.set_average_frames)
+
+        # save file
+        self.actionsave_image_2.setStatusTip('Save File')
+        self.actionsave_image_2.triggered.connect(self.file_save)
 
     def start_continue(self):
         self.cam_controller.start_continue()
@@ -81,7 +91,7 @@ class Ui_CustomWindow(Ui_MainWindow):
         self.lineEditHeight.setText('%.4f' % (p[4]))
         self.labelImage.setPixmap(QtGui.QPixmap(self.toQImage()))
         if self.checkBoxAutoExposure.isChecked():
-            self.lineEditExposureTime.setText(str(self.cam_controller.cam.ExposureTime()))
+            self.lineEditExposureTime.setText(str(self.cam_controller.get_exposure()))
 
     def update_plot(self):
         self.section_xcoord = np.arange(0, self.cam_controller.frame.shape[1])
@@ -111,7 +121,7 @@ class Ui_CustomWindow(Ui_MainWindow):
             print('ValueError: %s' % ex)
             return
         self.cam_controller.configure_exposure(exptime)
-        self.lineEditExposureTime.setText(str(self.cam_controller.cam.ExposureTime()))
+        self.lineEditExposureTime.setText(str(self.cam_controller.get_exposure()))
 
     def label_mousepress(self):
         def mousepress(eventQMouseEvent):
@@ -125,6 +135,10 @@ class Ui_CustomWindow(Ui_MainWindow):
             self.lineEditSectionY.setText(str(self.section_yctr))
             self.update_plot()
         return mousepress
+
+    def section_center(self):
+        self.section_xctr = round(float(self.lineEditxCenter.text()))
+        self.section_yctr = round(float(self.lineEdityCenter.text()))
 
     def checkbox_auto_exposure(self):
         if self.checkBoxAutoExposure.isChecked():
@@ -142,3 +156,14 @@ class Ui_CustomWindow(Ui_MainWindow):
         average_frames = max(1,int(self.lineEditAverageFrames.text()))
         self.cam_controller.average_frames = average_frames
         print("The number of frames to be averaged is set to %d"%(average_frames))
+
+    def file_save(self):
+        frametosave = self.cam_controller.frame
+        filename = "cx"+self.lineEditxCenter.text()+"cy"+self.lineEdityCenter.text() \
+            + "wx" + self.lineEditxWaist.text() + "wy" +self.lineEdityWaist.text() \
+            + "h" + self.lineEditHeight.text() + ".jpg"
+
+        name = QtGui.QFileDialog.getSaveFileName(self.mainwindow, 'Save File',os.path.join(self.save_dir,filename),"Images (*.png *.jpg)")[0]
+        if not name is '':
+            self.save_dir = os.path.split(name)[0]
+            cv2.imwrite(name,frametosave)

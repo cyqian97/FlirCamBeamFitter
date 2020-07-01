@@ -359,6 +359,9 @@ class FlirCamController:
 
         return result
 
+    def get_exposure(self):
+        return self.cam.ExposureTime()
+
     def set_background(self):
         self.background = self.frame
 

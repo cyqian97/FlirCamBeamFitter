@@ -20,6 +20,8 @@ class FakeCamContoller:
         self.framecount = 0
         self.exposuretimeupperlimit = 1000000
         self.average_frames = 0
+        self.cam_init_setting()
+
     def cam_init_setting(self):
 
         result = True
@@ -27,9 +29,11 @@ class FakeCamContoller:
         # set frame size after binning
         self.framewidth = 2000
         self.frameheight = 1500
-        self.frame = zeros((self.frameheight,self.framewidth),dtype= uint8)
-        self.background = zeros((self.frameheight,self.framewidth),dtype= uint8)
-        self.nobackground = zeros((self.frameheight,self.framewidth),dtype= uint8)
+        self.frame = zeros((self.frameheight, self.framewidth), dtype=uint8)
+        self.background = zeros((self.frameheight, self.framewidth), dtype=uint8)
+        self.nobackground = zeros((self.frameheight, self.framewidth), dtype=uint8)
+        self.floatzeroframe = zeros((self.frameheight, self.framewidth))
+
 
 
     def close(self):
@@ -93,6 +97,16 @@ class FakeCamContoller:
         print('Automatic exposure enabled...')
 
         return True
+
+    def get_exposure(self):
+        return 10
+
+    def set_background(self):
+        self.background = self.frame
+
+    def clear_background(self):
+        self.background = self.nobackground
+
 
 if __name__ == '__main__':
     import matplotlib.pyplot as plt
