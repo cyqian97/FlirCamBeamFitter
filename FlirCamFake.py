@@ -86,8 +86,6 @@ class FakeCamContoller:
         return True
 
     def configure_exposure(self,exposure_time_to_set):
-        self.update_log('*** CONFIGURING EXPOSURE ***\n')
-
         try:
             result = True
             self.update_log('Exposure time set to %s us...\n' % 10)

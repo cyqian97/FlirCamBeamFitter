@@ -9,14 +9,6 @@ import time
 flir = FlirCamController()
 # flir = FakeCamContoller()
 
-# flir.start_continue()
-# start_time = time.time()
-# for i in range(100):
-#     flir.acquire_continue()
-# print("--- %.8f seconds ---" % (time.time() - start_time))
-# plt.imshow(flir.acquire_continue())
-# plt.show()
-
 app = QtWidgets.QApplication(sys.argv)
 app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
 MainWindow = QtWidgets.QMainWindow()
