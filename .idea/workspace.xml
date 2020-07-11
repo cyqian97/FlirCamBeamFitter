@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d178d14d-3b69-482d-8d87-f35664f85a0b" name="Default Changelist" comment="1d fitting finished, not using moment fit">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logo.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlirCamFake.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlirCamFake.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/start.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlirWindowModify.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlirWindowModify.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cam.bat" beforeDir="false" afterPath="$PROJECT_DIR$/cam.bat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

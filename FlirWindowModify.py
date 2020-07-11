@@ -110,8 +110,8 @@ class Ui_CustomWindow(Ui_MainWindow):
                                     np.arange(0, self.cam_controller.frame.shape[0]), self.cam_controller.frame)
         self.lineEditxCenter.setText('%.4f' % (p[0]*self.unit))
         self.lineEdityCenter.setText('%.4f' % (p[1]*self.unit))
-        self.lineEditxWaist.setText('%.4f' % (p[2]*self.unit))
-        self.lineEdityWaist.setText('%.4f' % (p[3]*self.unit))
+        self.lineEditxWaist.setText('%.4f' % (p[2]/2*self.unit))
+        self.lineEdityWaist.setText('%.4f' % (p[3]/2*self.unit))
         self.lineEditHeight.setText('%.4f' % (p[4]))
         self.labelImage.setPixmap(QtGui.QPixmap(self.toQImage()))
         if self.checkBoxAutoExposure.isChecked():

@@ -128,7 +128,7 @@ if __name__ == '__main__':
     flir.acquire_continue()
     flir.acquire_continue()
     flir.acquire_continue()
-    self.update_log(flir.frame.shape)
+    flir.update_log(flir.frame.shape)
     plt.imshow(flir.frame)
     plt.show()
     flir.stop_continue()
