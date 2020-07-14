@@ -1,10 +1,12 @@
 from PyQt5 import QtCore, QtGui
 from pyqtgraph import PlotWidget
 from FlirWindow import Ui_MainWindow
-from fitgauss import fitgauss2d_section
+from fitgauss import fitgauss2d_section, gauss1d
 import numpy as np
 import os
 import cv2
+
+import matplotlib.pyplot as plt
 
 
 
@@ -110,10 +112,13 @@ class Ui_CustomWindow(Ui_MainWindow):
                                     np.arange(0, self.cam_controller.frame.shape[0]), self.cam_controller.frame)
         self.lineEditxCenter.setText('%.4f' % (p[0]*self.unit))
         self.lineEdityCenter.setText('%.4f' % (p[1]*self.unit))
-        self.lineEditxWaist.setText('%.4f' % (p[2]/2*self.unit))
-        self.lineEdityWaist.setText('%.4f' % (p[3]/2*self.unit))
+        self.lineEditxWaist.setText('%.4f' % (p[2]*2*self.unit))
+        self.lineEdityWaist.setText('%.4f' % (p[3]*2*self.unit))
         self.lineEditHeight.setText('%.4f' % (p[4]))
         self.labelImage.setPixmap(QtGui.QPixmap(self.toQImage()))
+        # plt.plot(self.cam_controller.frame[round(p[1]),::])
+        # plt.plot(gauss1d(p[0],p[2],p[4],np.arange(0, self.cam_controller.frame.shape[1]))+p[5])
+        # plt.show()
         if self.checkBoxAutoExposure.isChecked():
             self.lineEditExposureTime.setText(str(self.cam_controller.get_exposure()))
 

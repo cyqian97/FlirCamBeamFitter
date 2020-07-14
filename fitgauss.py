@@ -127,11 +127,14 @@ def fitgauss2d_section(xx, yy, zz):
     '''
     fit_int_x = fitgauss1d(xx, zz.sum(axis=0))
     fit_int_y = fitgauss1d(yy, zz.sum(axis=1))
+    # print(fit_int_x)
+    # print(fit_int_y)
+    # fit_x = fitgauss1d(xx, zz[np.min(np.abs(yy - fit_int_y[0][0])) == np.abs(yy - fit_int_y[0][0]), ::].flatten())
+    # fit_y = fitgauss1d(yy, zz[::, np.min(np.abs(xx - fit_int_x[0][0])) == np.abs(xx - fit_int_x[0][0])].flatten())
+    fit_x = fitgauss1d(xx, zz[round(fit_int_y[0][0]), ::])
+    fit_y = fitgauss1d(yy, zz[::, round(fit_int_x[0][0])])
 
-    fit_x = fitgauss1d(xx, zz[np.min(np.abs(yy - fit_int_y[0][0])) == np.abs(yy - fit_int_y[0][0]), ::].flatten())
-    fit_y = fitgauss1d(yy, zz[::, np.min(np.abs(xx - fit_int_x[0][0])) == np.abs(xx - fit_int_x[0][0])].flatten())
-
-    p = (fit_x[0][0], fit_y[0][0], fit_x[0][1], fit_y[0][1], (fit_x[0][2] + fit_y[0][2]) / 2)
+    p = (fit_x[0][0], fit_y[0][0], fit_x[0][1], fit_y[0][1], (fit_x[0][2] + fit_y[0][2]) / 2, (fit_x[0][3] + fit_y[0][3]) / 2, )
 
     if all([fit_int_x[1] == 1, fit_int_y[1] == 1, fit_x[1] == 1, fit_y[1] == 1]):
         ier = 1
@@ -157,11 +160,11 @@ if __name__ == '__main__':
     fig = plt.figure()
     ax = fig.gca(projection='3d')
     xx,yy = np.meshgrid(np.arange(4000),np.arange(3000))
-    zz = gauss2d(1000, 1000, 100, 400, 1, 0, xx, yy) + 1 + np.random.rand(*(xx.shape)) * 0.5
+    zz = (gauss2d(1000, 1000, 100, 400, 1, 0, xx, yy) + 1 + np.random.rand(*(xx.shape)) * 0.5)*100
     surf = ax.plot_surface(xx, yy, zz, cmap=cm.coolwarm, linewidth=0, antialiased=True)
     plt.show()
     start_time = time.time()
-    for i in range(1000):
+    for i in range(1):
         fitgauss2d_section(np.arange(0, 4000), np.arange(0, 3000), zz)
     print("--- %.8f seconds ---" % (time.time() - start_time))
     print(fitgauss2d_section(np.arange(0, 4000), np.arange(0, 3000), zz))

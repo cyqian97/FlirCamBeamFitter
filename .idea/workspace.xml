@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d178d14d-3b69-482d-8d87-f35664f85a0b" name="Default Changelist" comment="1d fitting finished, not using moment fit">
-      <change afterPath="$PROJECT_DIR$/logo.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlirCamFake.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlirCamFake.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlirCamController.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlirCamController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlirWindowModify.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlirWindowModify.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cam.bat" beforeDir="false" afterPath="$PROJECT_DIR$/cam.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitgauss.py" beforeDir="false" afterPath="$PROJECT_DIR$/fitgauss.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +43,7 @@
       <recent name="C:\Users\TrappedIonPC\cq5\OneDrive - rice.edu\Devices\BFS-PGE-120S4M-CS\myapp" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.start">
+  <component name="RunManager" selected="Python.fitgauss (1)">
     <configuration name="FlirCamFake" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="myapp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -151,11 +151,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.fitgauss (1)" />
         <item itemvalue="Python.start" />
         <item itemvalue="Python.nodenames" />
         <item itemvalue="Python.FlirCamFake" />
         <item itemvalue="Python.testplot" />
-        <item itemvalue="Python.fitgauss (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -201,59 +201,67 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="607" y="331" width="345" height="162" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1593132964617" />
-    <state width="1899" height="257" key="GridCell.Tab.0.bottom" timestamp="1594075104893">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2027" height="510" key="GridCell.Tab.0.bottom" timestamp="1594685117736">
+      <screen x="1920" y="0" width="2048" height="1112" />
     </state>
-    <state width="1899" height="257" key="GridCell.Tab.0.bottom/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@0.0.1920.1040" timestamp="1594075104893" />
+    <state width="1899" height="257" key="GridCell.Tab.0.bottom/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@0.0.1920.1040" timestamp="1594682293129" />
+    <state width="2027" height="510" key="GridCell.Tab.0.bottom/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@1920.0.2048.1112" timestamp="1594685117736" />
     <state width="1515" height="192" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1594057052007" />
     <state width="2027" height="374" key="GridCell.Tab.0.bottom/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593545087887" />
     <state width="2027" height="374" key="GridCell.Tab.0.bottom/0.0.2048.1112/2048.0.2048.1112/-1920.0.1920.1040@0.0.2048.1112" timestamp="1593553022568" />
     <state width="1515" height="179" key="GridCell.Tab.0.bottom/0.0.2048.1112/2048.0.2048.1112@0.0.2048.1112" timestamp="1592871004241" />
-    <state width="1899" height="257" key="GridCell.Tab.0.center" timestamp="1594075104893">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2027" height="510" key="GridCell.Tab.0.center" timestamp="1594685117736">
+      <screen x="1920" y="0" width="2048" height="1112" />
     </state>
-    <state width="1899" height="257" key="GridCell.Tab.0.center/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@0.0.1920.1040" timestamp="1594075104893" />
+    <state width="1899" height="257" key="GridCell.Tab.0.center/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@0.0.1920.1040" timestamp="1594682293129" />
+    <state width="2027" height="510" key="GridCell.Tab.0.center/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@1920.0.2048.1112" timestamp="1594685117736" />
     <state width="1515" height="192" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1594057052007" />
     <state width="2027" height="374" key="GridCell.Tab.0.center/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593545087887" />
     <state width="2027" height="374" key="GridCell.Tab.0.center/0.0.2048.1112/2048.0.2048.1112/-1920.0.1920.1040@0.0.2048.1112" timestamp="1593553022568" />
     <state width="1515" height="179" key="GridCell.Tab.0.center/0.0.2048.1112/2048.0.2048.1112@0.0.2048.1112" timestamp="1592871004241" />
-    <state width="1899" height="257" key="GridCell.Tab.0.left" timestamp="1594075104893">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2027" height="510" key="GridCell.Tab.0.left" timestamp="1594685117736">
+      <screen x="1920" y="0" width="2048" height="1112" />
     </state>
-    <state width="1899" height="257" key="GridCell.Tab.0.left/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@0.0.1920.1040" timestamp="1594075104893" />
+    <state width="1899" height="257" key="GridCell.Tab.0.left/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@0.0.1920.1040" timestamp="1594682293129" />
+    <state width="2027" height="510" key="GridCell.Tab.0.left/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@1920.0.2048.1112" timestamp="1594685117736" />
     <state width="1515" height="192" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1594057052007" />
     <state width="2027" height="374" key="GridCell.Tab.0.left/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593545087887" />
     <state width="2027" height="374" key="GridCell.Tab.0.left/0.0.2048.1112/2048.0.2048.1112/-1920.0.1920.1040@0.0.2048.1112" timestamp="1593553022568" />
     <state width="1515" height="179" key="GridCell.Tab.0.left/0.0.2048.1112/2048.0.2048.1112@0.0.2048.1112" timestamp="1592871004240" />
-    <state width="1899" height="257" key="GridCell.Tab.0.right" timestamp="1594075104893">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2027" height="510" key="GridCell.Tab.0.right" timestamp="1594685117736">
+      <screen x="1920" y="0" width="2048" height="1112" />
     </state>
-    <state width="1899" height="257" key="GridCell.Tab.0.right/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@0.0.1920.1040" timestamp="1594075104893" />
+    <state width="1899" height="257" key="GridCell.Tab.0.right/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@0.0.1920.1040" timestamp="1594682293129" />
+    <state width="2027" height="510" key="GridCell.Tab.0.right/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@1920.0.2048.1112" timestamp="1594685117736" />
     <state width="1515" height="192" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1594057052007" />
     <state width="2027" height="374" key="GridCell.Tab.0.right/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593545087887" />
     <state width="2027" height="374" key="GridCell.Tab.0.right/0.0.2048.1112/2048.0.2048.1112/-1920.0.1920.1040@0.0.2048.1112" timestamp="1593553022568" />
     <state width="1515" height="179" key="GridCell.Tab.0.right/0.0.2048.1112/2048.0.2048.1112@0.0.2048.1112" timestamp="1592871004241" />
-    <state width="1515" height="357" key="GridCell.Tab.1.bottom" timestamp="1593646735923">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2027" height="510" key="GridCell.Tab.1.bottom" timestamp="1594685117737">
+      <screen x="1920" y="0" width="2048" height="1112" />
     </state>
+    <state width="2027" height="510" key="GridCell.Tab.1.bottom/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@1920.0.2048.1112" timestamp="1594685117737" />
     <state width="1515" height="357" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593646735923" />
     <state width="2027" height="374" key="GridCell.Tab.1.bottom/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593545087887" />
     <state width="2027" height="374" key="GridCell.Tab.1.bottom/0.0.2048.1112/2048.0.2048.1112/-1920.0.1920.1040@0.0.2048.1112" timestamp="1593553022568" />
-    <state width="1515" height="357" key="GridCell.Tab.1.center" timestamp="1593646735923">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2027" height="510" key="GridCell.Tab.1.center" timestamp="1594685117737">
+      <screen x="1920" y="0" width="2048" height="1112" />
     </state>
+    <state width="2027" height="510" key="GridCell.Tab.1.center/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@1920.0.2048.1112" timestamp="1594685117737" />
     <state width="1515" height="357" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1593646735923" />
     <state width="2027" height="374" key="GridCell.Tab.1.center/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593545087887" />
     <state width="2027" height="374" key="GridCell.Tab.1.center/0.0.2048.1112/2048.0.2048.1112/-1920.0.1920.1040@0.0.2048.1112" timestamp="1593553022568" />
-    <state width="1515" height="357" key="GridCell.Tab.1.left" timestamp="1593646735923">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2027" height="510" key="GridCell.Tab.1.left" timestamp="1594685117737">
+      <screen x="1920" y="0" width="2048" height="1112" />
     </state>
+    <state width="2027" height="510" key="GridCell.Tab.1.left/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@1920.0.2048.1112" timestamp="1594685117737" />
     <state width="1515" height="357" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1593646735923" />
     <state width="2027" height="374" key="GridCell.Tab.1.left/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593545087887" />
     <state width="2027" height="374" key="GridCell.Tab.1.left/0.0.2048.1112/2048.0.2048.1112/-1920.0.1920.1040@0.0.2048.1112" timestamp="1593553022568" />
-    <state width="1515" height="357" key="GridCell.Tab.1.right" timestamp="1593646735923">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2027" height="510" key="GridCell.Tab.1.right" timestamp="1594685117737">
+      <screen x="1920" y="0" width="2048" height="1112" />
     </state>
+    <state width="2027" height="510" key="GridCell.Tab.1.right/-2048.0.2048.1112/1920.0.2048.1112/0.0.1920.1040@1920.0.2048.1112" timestamp="1594685117737" />
     <state width="1515" height="357" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1593646735923" />
     <state width="2027" height="374" key="GridCell.Tab.1.right/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593545087887" />
     <state width="2027" height="374" key="GridCell.Tab.1.right/0.0.2048.1112/2048.0.2048.1112/-1920.0.1920.1040@0.0.2048.1112" timestamp="1593553022568" />
@@ -287,6 +295,11 @@
           <url>file://$PROJECT_DIR$/FlirCamController.py</url>
           <line>4</line>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/fitgauss.py</url>
+          <line>138</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

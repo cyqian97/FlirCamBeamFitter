@@ -59,6 +59,7 @@ class FlirCamController:
         # set frame size after binning
         self.framewidth = 2000
         self.frameheight = 1500
+        self.pixel_size *= 2
         self.frame = zeros((self.frameheight, self.framewidth), dtype=uint8)
         self.background = zeros((self.frameheight, self.framewidth), dtype=uint8)
         self.nobackground = zeros((self.frameheight, self.framewidth), dtype=uint8)
