@@ -1,7 +1,5 @@
 name: camtest
 channels:
-  - https://conda.m-labs.hk/artiq
-  - m-labs
   - defaults
   - conda-forge
 dependencies:
