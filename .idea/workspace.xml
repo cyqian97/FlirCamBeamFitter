@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d178d14d-3b69-482d-8d87-f35664f85a0b" name="Default Changelist" comment="1d fitting finished, not using moment fit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlirCamController.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlirCamController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlirWindowModify.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlirWindowModify.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitgauss.py" beforeDir="false" afterPath="$PROJECT_DIR$/fitgauss.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +31,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/MyDoc/Statistic Mechanics/ENS/6" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -191,10 +188,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="369" y="12" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1593358037416" />
-    <state x="603" y="233" key="FileChooserDialogImpl" timestamp="1593380242290">
+    <state x="603" y="233" key="FileChooserDialogImpl" timestamp="1596334042180">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="603" y="233" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1593380242290" />
+    <state x="603" y="233" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1596334042180" />
     <state x="804" y="314" key="FileChooserDialogImpl/0.0.2048.1112/-2048.0.2048.1112@0.0.2048.1112" timestamp="1593027834649" />
     <state x="804" y="315" key="FileChooserDialogImpl/0.0.2048.1112/2048.0.2048.1112@0.0.2048.1112" timestamp="1592607525338" />
     <state x="607" y="331" width="345" height="162" key="Github.CreateGistDialog" timestamp="1593132964617">
@@ -269,10 +266,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="279" y="58" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1593380278865" />
-    <state x="465" y="236" width="727" height="351" key="com.intellij.ide.util.TipDialog" timestamp="1593537362725">
+    <state x="465" y="236" width="727" height="351" key="com.intellij.ide.util.TipDialog" timestamp="1596334009368">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="236" width="727" height="351" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1593537362725" />
+    <state x="465" y="236" width="727" height="351" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1596334009368" />
     <state x="597" y="258" width="1153" height="813" key="dock-window-1" timestamp="1592671396341">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -288,18 +285,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/FlirCamFake.py</url>
-          <line>70</line>
+          <line>97</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/FlirCamController.py</url>
           <line>4</line>
           <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/fitgauss.py</url>
-          <line>138</line>
-          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

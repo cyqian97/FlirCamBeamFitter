@@ -7,7 +7,7 @@ from PyQt5 import QtWidgets
 import time
 
 flir = FlirCamController()
-# flir = FakeCamContoller()
+# flir = FakeCamContoller() #use to test the program without a camera
 
 app = QtWidgets.QApplication(sys.argv)
 app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
